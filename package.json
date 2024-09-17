@@ -1,0 +1,24 @@
+{
+  "name": "lista-de-produtos-com-carrinho",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.4.6"
+  },
+  "dependencies": {
+    "esbuild": "^0.21.5",
+    "lista-de-produtos-com-carrinho": "file:",
+    "nanoid": "^3.3.7",
+    "picocolors": "^1.1.0",
+    "postcss": "^8.4.47",
+    "rollup": "^4.21.3",
+    "source-map-js": "^1.2.1"
+  },
+  "description": ""
+}
