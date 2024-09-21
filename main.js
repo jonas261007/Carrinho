@@ -25,6 +25,27 @@ class Produto {
         return this.imagemUrl;
     }
 }
+// Classe ShoppingCart
+class ShoppingCart {
+    constructor() {
+        this.items = [];
+    }
+    addToCart(produto) {
+        this.items.push(produto);
+        this.updateCartUI();
+        mostrarNotificacao(`${produto.getNome()} foi adicionado ao carrinho.`);
+    }
+    getItems() {
+        return this.items;
+    }
+    clearCart() {
+        this.items = [];
+        this.updateCartUI();
+    }
+    updateCartUI() {
+        atualizarCarrinho(this.items);
+    }
+}
 // Lista de produtos com imagens da internet e nomes em português
 const produtos = [
     new Produto(1, 'Waffle com Frutas', 27.50, 'Sobremesa', './imagens/Captura de tela 2024-09-17 122650.jpg'),
@@ -68,15 +89,14 @@ function mostrarNotificacao(mensagem) {
         notificacao.style.display = 'none';
     }, 3000);
 }
+// Inicializando o carrinho de compras
+const cart = new ShoppingCart();
 // Função para adicionar produto ao carrinho
-let carrinho = [];
 function adicionarAoCarrinho(produto) {
-    carrinho.push(produto);
-    atualizarCarrinho();
-    mostrarNotificacao(`${produto.getNome()} foi adicionado ao carrinho à direita.`);
+    cart.addToCart(produto);
 }
 // Função para atualizar o carrinho na tela
-function atualizarCarrinho() {
+function atualizarCarrinho(carrinho) {
     const carrinhoCount = document.getElementById('carrinho-count');
     const carrinhoList = document.getElementById('carrinho-list');
     let total = 0;
@@ -111,10 +131,9 @@ document.addEventListener('click', (event) => {
     }
     // Event listener para o botão "Finalizar Compra"
     if (target.id === 'finalizar-compra') {
-        if (carrinho.length > 0) {
+        if (cart.getItems().length > 0) {
             alert('Obrigado pela compra!');
-            carrinho = [];
-            atualizarCarrinho();
+            cart.clearCart(); // Limpa o carrinho após confirmação
         }
         else {
             alert('Seu carrinho está vazio.');
